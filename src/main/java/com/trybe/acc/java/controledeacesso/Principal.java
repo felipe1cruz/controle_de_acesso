@@ -15,12 +15,11 @@ public class Principal {
   public static void main(String[] args) {
     ArrayList<Integer> listaIdades = new ArrayList<Integer>();
     short opcaoEscolhida = 1;
+    Scanner scanner = new Scanner(System.in);
+
+    mensagemPrincipalCatraca();
 
     while (opcaoEscolhida != 2) {
-      Scanner scanner = new Scanner(System.in);
-      System.out.println("Entre com o número correspondente à opção desejada");
-      System.out.println("1 - Acessar o estabelecimento");
-      System.out.println("2 - Finalizar sistema e mostrar relatório");
 
       String opcaoEscolhidaString = scanner.next();
       opcaoEscolhida = Short.parseShort(opcaoEscolhidaString);
@@ -31,6 +30,7 @@ public class Principal {
         int idade = Integer.parseInt(idadeString);
         listaIdades.add(idade);
         mensagemFaixaEtaria(idade);
+        mensagemPrincipalCatraca();
       } else if (opcaoEscolhida == 2) {
         int[] totalPorIdade = visitantesPorIdade(listaIdades);
         float[] porcentagemIdade = porcentagemPorIdade(totalPorIdade);
@@ -38,6 +38,7 @@ public class Principal {
         relatorioFormatado(totalPorIdade, porcentagemIdade);
       } else {
         System.out.println("Entre com uma opção válida!");
+        continue;
       }
     }
 
@@ -113,7 +114,7 @@ public class Principal {
 
     float porcentoMenorDeIdade = listaTotalPorPorcentagem[0];
     float porcentoAdulto = listaTotalPorPorcentagem[1];
-    float porcentoAdultoMaior50 = listaTotalPorPorcentagem[1];
+    float porcentoAdultoMaior50 = listaTotalPorPorcentagem[2];
 
     System.out.println("----- Quantidade -----");
     System.out.println("menores: " + menorDeIdade);
@@ -126,5 +127,12 @@ public class Principal {
     System.out.println("a partir de 50: " + porcentoAdultoMaior50 + "%");
     System.out.println();
     System.out.println("TOTAL: " + total);
+  }
+
+  private static void mensagemPrincipalCatraca() {
+    System.out.println("Entre com o número correspondente à opção desejada");
+    System.out.println("1 - Acessar o estabelecimento");
+    System.out.println("2 - Finalizar sistema e mostrar relatório");
+
   }
 }
